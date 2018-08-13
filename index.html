@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Contaktbook</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Phonebook">
+    <meta name="keywords" content="Phonebook">
+    <meta name="autor" content="Sakovets Oleksandr">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="css/foundation.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+</head>
+<body onload="seeCntakt()">
+    <header class="header">
+    <div class="logo, row">
+        <div class="png columns large-4 medium-6 small-12">
+            <img src="img/logo.png">
+         </div>
+        <div class="book columns large-4 medium-6 small-12">
+            <p>ContactBook</p>
+            <p><input type="text" name="Search" placeholder="Search" onkeyup="Search()" id="poisk"></p>
+        </div>
+        <div class="add columns large-4 medium-6 small-12">
+            <button id="add">New contact</button>
+        </div>
+    </div>
+    </header>
+
+<div class="namebloc, row columns">
+    <ul id="spisok"></ul>
+
+
+
+</div>
+<div id="form1" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <form action="" method="get" name="contact" id="form">
+            <label for="name1">Name:</label> <input type="text" name="name1" value="" id="name1">
+            <label for="surname">Surname:</label><input type="text" name="surname" value="" id="surname">
+            <label for="phone">Phone:</label><input type="text" name="phone" value="" id="phone"  pattern="^[0-9+-]+$">
+            <label for="emale">E-mail:</label><input type="text" name="email" value="" id="emale" pattern="/^\w{1,}@{1,}\w{2,}$/">
+            <input type="button" onclick="valid(document.getElementById('form'))" name="submit" value="Add contact" id="vvod">
+        </form>
+    </div>
+</div>
+
+<div>
+    <div id="form2" class="modal2">
+        <div class="modal-content2 row columns">
+            <span class="close2">&times;</span> <br>
+            <div id="s-cont"></div>
+            <button id="edit" class="button">Edit</button>
+            <button id="del" class="button" >Delete</button>
+        </div>
+    </div>
+</div>
+    <script src="js/index.js"></script>
+</body>
+</html>
