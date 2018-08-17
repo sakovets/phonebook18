@@ -19,6 +19,10 @@
     float: none;
 }
 
+.wreper{
+    position: relative;
+}
+
 a{
     -webkit-transition: all .3s ease-in-out;
     -o-transition: all .3s ease-in-out;
@@ -44,21 +48,14 @@ body{
 
 .header{
     background-color: black;
-    padding: 25px;
+    padding: 20px;
 
-}
-
-.png{
-    float: left;
-
-    text-align: center;
 }
 
 .add{
-    float: left;
-    text-align: center;
-    padding: 25px;
-    padding-top: 45px;
+   text-align: center;
+
+
 
 }
 
@@ -116,8 +113,13 @@ body{
     top: 0;
     height: 100%;
     width: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: antiquewhite;
+    padding: 20px;
+    font-size: 18px;
+    font-family: "Arial";
+    color: rgb(0, 0, 0);
+    line-height: 1.667;
+    text-align: left;
 }
 
 .modal2 {
@@ -128,31 +130,8 @@ body{
     top: 0;
     height: 100%;
     width: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.modal-content{
-    background-color: antiquewhite;
-    margin: 15% auto;
-    padding: 20px;
-    border: 2px solid #2a8539;
-    border-radius: 2px;
-    width: 80%;
-    font-size: 18px;
-    font-family: "Arial";
-    color: rgb(0, 0, 0);
-    line-height: 1.667;
-    text-align: left;
-}
-
-.modal-content2{
     background-color: #64fac0;
-    margin: 15% auto;
     padding: 20px;
-    border: 2px solid #856539;
-    border-radius: 2px;
-    width: 80%;
     font-size: 18px;
     font-family: "Arial";
     color: rgb(0, 0, 0);
@@ -184,9 +163,23 @@ body{
 }
 
 .button{
-    margin: 30px;
-    padding: 7px;
+    padding: 10px 20px;
     text-align: center;
     font-size: 18px;
     border-radius: 5px;
+    width: 140px;
+}
+
+.btn{
+    padding-top: 50px;
+    text-align: center;
+}
+
+.info{
+    padding-top: 20px;
+    font-size: 18px;
+    font-family: "Arial";
+    color: red;
+    font-weight: bold;
+    text-align: center;
 }

@@ -9,6 +9,7 @@ var btn = document.getElementById("add");
 var span = document.getElementsByClassName("close")[0];
 var e = 0;
 
+
 // Вывод окна ввода контакта
 
 btn.onclick = function () {
@@ -24,8 +25,9 @@ span.onclick = function () {
 
 function valid (fotm) {
     var fail = "false";
-    var vphone = /^\d[\d\(\)\ -]{2,14}\d$/;
+    var vphone = /^[\d\ +]{1}[\d\(\)\ -]{4,16}\d$/;
     var vmail = /^[\w]{1}[\w-\.]*@[\w-]+\.[a-z]{2,4}$/i;
+    var info = document.querySelector('#info');
     tmpObj.name = document.getElementsByName("name1")[0].value;
     if(tmpObj.name === "")
         fail = "You did not enter a name";
@@ -36,38 +38,31 @@ function valid (fotm) {
             break;
         }
     }
+
     tmpObj.surname = document.getElementsByName('surname')[0].value;
 
+    tmpObj.phone = document.getElementsByName('phone')[0].value;
+    if(vphone.test(tmpObj.phone) === false)
+        fail = "Invalid phone number format";
+    if(tmpObj.phone === "")
+        fail = "You did not enter a phone";
 
-    var phones = document.getElementsByName('phone');
-    tmpObj.phones1=[];
-    for(var i = 0; i<phones.length; i++){
-        tmpObj.phones1.push(phones[i].value);
-         if(vphone.test(tmpObj.phones1[i]) === false)
-            fail = "Invalid phone number format";
-    }
-    if(tmpObj.phones1[0] === "")
-        fail = "You did not enter a phone.1";
+    tmpObj.email = document.getElementsByName('email')[0].value;
+    if(vmail.test(tmpObj.email) === false)
+        fail = "Wrong e-mail format";
+    if(tmpObj.email === "")
+        fail = "You did not enter a e-mail";
 
-
-    var emails = document.getElementsByName('email');
-    tmpObj.emails1=[];
-    for(var j = 0; j<emails.length; j++){
-        tmpObj.emails1.push(emails[j].value);
-        if(vmail.test(tmpObj.emails1[j]) === false)
-            fail = "Wrong e-mail format";
-    }
 
     if (fail === "false") {
         localStorage.setItem(tmpObj.name, JSON.stringify(tmpObj));
-        alert('Contact ' + tmpObj.name + ' added to memory');
-            }
+        }
     else{
-        alert(fail);
+        info.innerHTML = fail;
         return false;
-    }
+        }
 
-      window.location.reload();
+    window.location.reload();
 }
 
 // Поиск
@@ -115,20 +110,11 @@ function see(myKey) {
     var returnObj = JSON.parse(localStorage.getItem(myKey));
     var span = document.createElement("span");
     span.innerHTML = "Name: <b>" + returnObj.name + "</b><br>"+
-        "Surname: <b>" + returnObj.surname +"</b><br>";
+        "Surname: <b>" + returnObj.surname +"</b><br>" +
+        "Phone: <b>" + returnObj.phone +"</b><br>"+
+        "E-mail: <b>" + returnObj.email +"</b><br>";
     document.getElementById("s-cont").appendChild(span);
-    for(var i = 0; i< returnObj.phones1.length; i++){
-        var span1 = document.createElement("span");
-        var m=i+1;
-        span1.innerHTML ="Tel." + ": <b>" + returnObj.phones1[i] + "</b><br>";
-        document.getElementById("s-cont").appendChild(span1);
-    }
-    for(var j = 0; j< returnObj.emails1.length; j++){
-        var span2 = document.createElement("span");
-        var n=j+1;
-        span2.innerHTML ="E-mail." + ": <b>" + returnObj.emails1[j] + "</b><br>";
-        document.getElementById("s-cont").appendChild(span2);
-    }
+
     // Удаление контакта
 
     bdel.onclick = function () {
@@ -144,19 +130,9 @@ function see(myKey) {
         document.getElementsByName("submit")[0].value = "Edit";
         document.getElementsByName("name1")[0].value = returnObj.name;
         document.getElementsByName("surname")[0].value = returnObj.surname;
-        document.getElementsByName("phone")[0].value = returnObj.phones1[0];
-        for(var i = 1; i< returnObj.phones1.length; i++){
-            var div1 = document.createElement("div");
-            div1.innerHTML = "<input name=\"phone\"" + EcurFieldNameId + "\" type=\"text\" value =" + returnObj.phones1[i] + " pattern=\"/^\w{1,}@{1,}\w{2,}$/\"> <a onclick=\"return deleteField(this)\" href=\"#\">[X]</a>";
-            document.getElementById("parentId").appendChild(div1);
-        }
-        document.getElementsByName("email")[0].value = returnObj.emails1[0];
-        for(var j = 1; j< returnObj.emails1.length; j++){
-            var div2 = document.createElement("div");
-            div2.innerHTML = "<input name=\"email\"" + EcurFieldNameId + "\" type=\"text\" value =" + returnObj.emails1[j] + " pattern=\"/^\w{1,}@{1,}\w{2,}$/\"> <a onclick=\"return deleteField(this)\" href=\"#\">[X]</a>";
-            document.getElementById("EparentId").appendChild(div2);
+        document.getElementsByName("phone")[0].value = returnObj.phone;
+        document.getElementsByName("email")[0].value = returnObj.email;
 
-        }
     }
 
 }
